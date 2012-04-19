@@ -68,3 +68,22 @@ en:
     update:
       success: 'Source was successfully updated.'
     
+  venues:
+    index:
+      title: "Venues"
+    new:
+      title: "Add a Venue"
+    edit:
+      title: "Editing '%{title}'"
+    create:
+      evil_robot_html: "<h3>Evil Robot</h3> We didn't create this venue because we think you're an evil robot. If you're really not an evil robot, look at the form instructions more carefully. If this doesn't work please file a bug report and let us know."
+      success: "Venue was successfully created."
+    update:
+      evil_robot_html: "<h3>Evil Robot</h3> We didn't update this venue because we think you're an evil robot. If you're really not an evil robot, look at the form instructions more carefully. If this doesn't work please file a bug report and let us know."
+      success: 'Venue was successfully updated.'
+    destroy:
+      venue_with_association: "Cannot destroy venue that has associated events, you must reassociate all its events first."
+      success: "'%{venue}' has been deleted"
+
+    duplicates:
+      title: "Duplicate Venue Squasher"

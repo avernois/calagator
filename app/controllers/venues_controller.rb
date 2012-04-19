@@ -37,7 +37,7 @@ class VenuesController < ApplicationController
       @newest_venues = scoped_venues.limit(10).order('created_at DESC')
     end
 
-    @page_title = "Venues"
+    @page_title = t("venues.index.title")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,7 +81,7 @@ class VenuesController < ApplicationController
   # GET /venues/new.xml
   def new
     @venue = Venue.new
-    @page_title = "Add a Venue"
+    @page_title = t("venues.new.title")
 
     respond_to do |format|
       format.html { render :layout => !(params[:layout]=="false") }
@@ -92,7 +92,7 @@ class VenuesController < ApplicationController
   # GET /venues/1/edit
   def edit
     @venue = Venue.find(params[:id])
-    @page_title = "Editing '#{@venue.title}'"
+    @page_title = t("venues.edit.title", :title => @venue.title)
   end
 
   # POST /venues
@@ -101,12 +101,12 @@ class VenuesController < ApplicationController
     @venue = Venue.new(params[:venue])
 
     if evil_robot = !params[:trap_field].blank?
-      flash[:failure] = "<h3>Evil Robot</h3> We didn't create this venue because we think you're an evil robot. If you're really not an evil robot, look at the form instructions more carefully. If this doesn't work please file a bug report and let us know."
+      flash[:failure] = t("venues.create.evil_robot_html")
     end
 
     respond_to do |format|
       if !evil_robot && @venue.save
-        flash[:success] = 'Venue was successfully created.'
+        flash[:success] = t("venues.create.success")
         format.html { redirect_to( venue_path(@venue) ) }
         format.xml  { render :xml => @venue, :status => :created, :location => @venue }
       else
@@ -123,12 +123,12 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
     
     if evil_robot = !params[:trap_field].blank?
-      flash[:failure] = "<h3>Evil Robot</h3> We didn't update this venue because we think you're an evil robot. If you're really not an evil robot, look at the form instructions more carefully. If this doesn't work please file a bug report and let us know."
+      flash[:failure] = t("venues.update.evil_robot_html")
     end
 
     respond_to do |format|
       if !evil_robot && @venue.update_attributes(params[:venue])
-        flash[:success] = 'Venue was successfully updated.'
+        flash[:success] = t("venues.update.success")
         format.html { 
           if(!params[:from_event].blank?)
             redirect_to(event_url(params[:from_event]))
@@ -150,7 +150,7 @@ class VenuesController < ApplicationController
     @venue = Venue.find(params[:id])
 
     if @venue.events.count > 0
-      message = "Cannot destroy venue that has associated events, you must reassociate all its events first."
+      message = t("venues.destroy.venue_with_association")
       respond_to do |format|
         format.html {
           flash[:failure] = message
@@ -163,7 +163,7 @@ class VenuesController < ApplicationController
     else
       @venue.destroy
       respond_to do |format|
-        format.html { redirect_to(venues_path, :flash => {:success => "\"#{@venue.title}\" has been deleted"}) }
+        format.html { redirect_to(venues_path, :flash => {:success => t("venues.destroy.success", :venue => @venue.title)}) }
         format.xml { head :ok }
       end
     end
@@ -179,7 +179,7 @@ class VenuesController < ApplicationController
       flash[:failure] = "#{e}"
     end
 
-    @page_title = "Duplicate Venue Squasher"
+    @page_title = t("venues.duplicates.title")
 
     respond_to do |format|
       format.html # index.html.erb
