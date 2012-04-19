@@ -11,27 +11,31 @@ class SourcesController < ApplicationController
       begin
         @events = @source.create_events!
       rescue SourceParser::NotFound => e
-        @source.errors.add(:base, "No events found at remote site. Is the event identifier in the URL correct?")
+        @source.errors.add(:base, t("sources.import.no_events_found"))
       rescue SourceParser::HttpAuthenticationRequiredError => e
-        @source.errors.add(:base, "Couldn't import events, remote site requires authentication.")
+        @source.errors.add(:base, t("sources.import.authentification_required"))
       rescue OpenURI::HTTPError => e
-        @source.errors.add(:base, "Couldn't download events, remote site may be experiencing connectivity problems. ")
+        @source.errors.add(:base, t("sources.import.connectivity_problem")) 
       rescue Errno::EHOSTUNREACH => e
-        @source.errors.add(:base, "Couldn't connect to remote site.")
+        @source.errors.add(:base, t("sources.import.cannot_connect"))
       rescue SocketError => e
-        @source.errors.add(:base, "Couldn't find IP address for remote site. Is the URL correct?")
+        @source.errors.add(:base, t("sources.import.wrong_url"))
       rescue Exception => e
-        @source.errors.add(:base, "Unknown error: #{e}")
+        @source.errors.add(:base, t("sources.import.unknown_error", :error => e))
       end
     end
 
     respond_to do |format|
       if valid && @events && @events.size > 0
         # TODO move this to a view, it currently causes a CGI::Session::CookieStore::CookieOverflow if the flash gets too big when too many events are imported at once
-        s = "<p>Imported #{@events.size} entries:</p><ul>"
+        s = "<p>"
+        s << t("sources.import.imported_entries", :count => @events.size)
+        s << ":</p><ul>"
         @events.each_with_index do |event, i|
           if i >= MAXIMUM_EVENTS_TO_DISPLAY_IN_FLASH
-            s << "<li>And #{@events.size - i} other events.</li>"
+            s << "<li>"
+            s << t("sources.import.other_entries", :count => @events.size - i)
+            s << "</li>"
             break
           else
             s << "<li>#{help.link_to(event.title, event_url(event))}</li>"
@@ -44,8 +48,8 @@ class SourcesController < ApplicationController
         format.xml  { render :xml => @source, :events => @events }
       else
         flash[:failure] = @events.nil? \
-          ? "Unable to import: #{@source.errors.full_messages.to_sentence}" \
-          : "Unable to find any upcoming events to import from this source"
+          ? t("sources.import.unable_to_import", :error => @source.errors.full_messages.to_sentence) \
+          : t("sources.import.unable_to_import_upcoming")
 
         format.html { render :action => "new" }
         format.xml  { render :xml => @source.errors, :status => :unprocessable_entity }
@@ -104,7 +108,7 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.save
-        flash[:notice] = 'Source was successfully created.'
+        flash[:notice] = t("sources.create.success")
         format.html { redirect_to( source_path(@source) ) }
         format.xml  { render :xml => @source, :status => :created, :location => @source }
       else
@@ -121,7 +125,7 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.update_attributes(params[:source])
-        flash[:notice] = 'Source was successfully updated.'
+        flash[:notice] = t("sources.update.success")
         format.html { redirect_to( source_path(@source) ) }
         format.xml  { head :ok }
       else
