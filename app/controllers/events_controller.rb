@@ -14,7 +14,7 @@ class EventsController < ApplicationController
 
     @perform_caching = params[:order].blank? && params[:date].blank?
 
-    @page_title = t("Events")
+    @page_title = t("events.index.title")
 
     render_events(@events)
   end
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new(params[:event])
-    @page_title = t("Add an Event")
+    @page_title = t("events.new.title")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,7 +57,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
-    @page_title = t("Editing event", :event => @event.title)
+    @page_title = t("events.edit.title", :event => @event.title)
   end
 
   # POST /events
@@ -71,15 +71,15 @@ class EventsController < ApplicationController
     @event.end_time   = [ params[:end_date], params[:end_time] ]
 
     if evil_robot = params[:trap_field].present?
-      flash[:failure] = t("message.creation.evil_robot_html")
+      flash[:failure] = t("events.create.evil_robot_html")
     end
 
     respond_to do |format|
       if !evil_robot && params[:preview].nil? && @event.save
-        flash[:success] = t("message.creation.success")
+        flash[:success] = t("events.create.success")
         format.html {
           if has_new_venue && !params[:venue_name].blank?
-            flash[:success] += t("message.creation.more_info_venue")
+            flash[:success] += t("events.create.more_info_venue")
             redirect_to(edit_venue_url(@event.venue, :from_event => @event.id))
           else
             redirect_to( event_path(@event) )
@@ -105,15 +105,15 @@ class EventsController < ApplicationController
     @event.end_time   = [ params[:end_date], params[:end_time] ]
 
     if evil_robot = !params[:trap_field].blank?
-      flash[:failure] = t("message.update.evil_robot_html")
+      flash[:failure] = t("events.update.evil_robot_html")
     end
 
     respond_to do |format|
       if !evil_robot && params[:preview].nil? && @event.update_attributes(params[:event])
-        flash[:success] = t("message.update.success")
+        flash[:success] = t("events.update.success")
         format.html {
           if has_new_venue && !params[:venue_name].blank?
-            flash[:success] += t("message.update.more_info_venue")
+            flash[:success] += t("events.update.more_info_venue")
             redirect_to(edit_venue_url(@event.venue, :from_event => @event.id))
           else
             redirect_to( event_path(@event) )
@@ -139,7 +139,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url, :flash => {:success => t("message.delete.success", :event => @event.title)}) }
+      format.html { redirect_to(events_url, :flash => {:success => t("events.destroy.success", :event => @event.title)}) }
       format.xml  { head :ok }
     end
   end
@@ -154,7 +154,7 @@ class EventsController < ApplicationController
       flash[:failure] = "#{e}"
     end
 
-    @page_title = t("Duplicate Event Squasher")
+    @page_title = t("events.duplicates.title")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -173,18 +173,18 @@ class EventsController < ApplicationController
     @order = params[:order].presence
 
     if @order && @order == "score" && @tag
-      flash[:failure] = t("message.search.failure.tags_no_sort")
+      flash[:failure] = t("events.search.tags_no_sort")
       @order = nil
     end
 
     if !@query && !@tag
-      flash[:failure] = t("message.search.failure.no_query")
+      flash[:failure] = t("events.search.failure.no_query")
       return redirect_to(root_path)
     end
 
     if @query && @tag
       # TODO make it possible to search by tag and query simultaneously
-      flash[:failure] = t("message.search.failure.query_and_tags")
+      flash[:failure] = t("events.search.query_and_tags")
       return redirect_to(root_path)
     elsif @query
       @grouped_events = Event.search_keywords_grouped_by_currentness(@query, :order => @order, :skip_old => @current)
@@ -195,7 +195,7 @@ class EventsController < ApplicationController
     # setting @events so that we can reuse the index atom builder
     @events = @grouped_events[:past] + @grouped_events[:current]
 
-    @page_title = @tag ? t("Events tagged with tags", :tags => @tag) : t("Search Results for query", :query => @query)
+    @page_title = @tag ? t("events.search.title.tag", :tags => @tag) : t("events.search.title.query", :query => @query)
 
     render_events(@events)
   end
@@ -203,11 +203,11 @@ class EventsController < ApplicationController
   # Display a new event form pre-filled with the contents of an existing record.
   def clone
     @event = Event.find(params[:id]).to_clone
-    @page_title = t("Clone an existing Event")
+    @page_title = t("events.clone.title")
 
     respond_to do |format|
       format.html {
-        flash[:success] = t("message.clone.success")
+        flash[:success] = t("events.clone.success")
         render "new.html.erb"
       }
       format.xml  { render :xml => @event }
@@ -270,16 +270,16 @@ protected
             begin
               return Date.parse(params[:date][kind])
             rescue ArgumentError => e
-              append_flash :failure, t("message.filter.failure", :error => "an invalid", :kind => kind)
+              append_flash :failure, t("events.filter.failure", :error => "an invalid", :kind => kind)
             end
           else
-            append_flash :failure, t("message.filter.failure", :error => "an empty", :kind => kind)
+            append_flash :failure, t("events.filter.failure", :error => "an empty", :kind => kind)
           end
         else
-          append_flash :failure, t("message.filter.failure", :error => "a missing", :kind => kind)
+          append_flash :failure, t("events.filter.failure", :error => "a missing", :kind => kind)
         end
       else
-        append_flash :failure, t("message.filter.failure", :error => "a malformed", :kind => kind)
+        append_flash :failure, t("events.filter.failure", :error => "a malformed", :kind => kind)
       end
     end
     return self.send("default_#{kind}_date")

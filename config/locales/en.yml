@@ -5,11 +5,17 @@ en:
   hello: "Hello world"
 
 #events_controller.rb
-  Events: "Events"
-  Add an Event: "Add an Event"
-  Editing event: "Editing '%{event}'"
-  message:
-    creation:
+  events:
+    index:
+      title: "Events"
+    
+    new:
+      title: "Add an Event"
+    
+    edit:
+      title: "Editing '%{event}'"
+
+    create:
       success: "Your event was successfully created."
       evil_robot_html: "<h3>Evil Robot</h3> We didn't create this event because we think you're an evil robot. If you're really not an evil robot, look at the form instructions more carefully. If this doesn't work please file a bug report and let us know."
       more_info_venue: "Please tell us more about where it's being held."
@@ -19,21 +25,23 @@ en:
       success: 'Event was successfully updated.'
       more_info_venue: "Please tell us more about where it's being held."
     
-    delete:
+    destroy:
       success: "'%{event}' has been deleted"
     
+    duplicates:
+      title: "Duplicate Event Squasher"
+
     search:
-      failure:
-        tags_not_sort: "You cannot sort tags by score"
-        no_query: "You must enter a search query"
-        query_and_tags: "You can't search by tag and query at the same time"
-    
+      tags_not_sort: "You cannot sort tags by score"
+      no_query: "You must enter a search query"
+      query_and_tags: "You can't search by tag and query at the same time"
+      title:
+        query: "Search Results for %{query}"
+        tag: "Events tagged with %{tags}"
+
     clone:
+      title: "Clone an existing Event"
       success: "This is a new event cloned from an existing one. Please update the fields, like the time and description."
+    
     filter:
       failure: "Can't filter by %{error} %{kind} date."
-
-  Duplicate Event Squasher: "Duplicate Event Squasher"
-  Search Results for query: "Search Results for %{query}"
-  Events tagged with tags: "Events tagged with %{tags}"
-  Clone an existing Event: "Clone an existing Event"
