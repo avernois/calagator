@@ -1,12 +1,12 @@
 class SiteController < ApplicationController
   # Raise exception, mostly for confirming that exception_notification works
   def omfg
-    raise ArgumentError, "OMFG"
+    raise ArgumentError, t("site.omfg")
   end
 
   # Render something to help benchmark stack without the views
-  def hello
-    render :text => "hello"
+    def hello
+    render :text => t("site.hello")
   end
 
   def index

@@ -45,3 +45,7 @@ en:
     
     filter:
       failure: "Can't filter by %{error} %{kind} date."
+
+  site:
+    omfg: "OMFG"
+    hello: "hello"
