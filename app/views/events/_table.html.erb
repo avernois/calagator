@@ -17,7 +17,7 @@ rowspans = calculate_rowspans(events)
 <table class='event_table'>
   <thead>
     <tr>
-      <th class='date'>Sort By: <%= link_to "Date", url_for(params.merge(:order => 'date')) %></th>
+      <th class='date'><%= t("sort_by") %>: <%= link_to t("date"), url_for(params.merge(:order => 'date')) %></th>
       <th class='event_summary'>
         <%= events_sort_link('name') -%>,
         <%= events_sort_link('venue') -%>
@@ -53,20 +53,20 @@ rowspans = calculate_rowspans(events)
               </div>
             <% end -%>
             <% if !event.url.blank? -%>
-              <%= link_to "Website", event.url, :class => "url", :rel => "nofollow" -%>
+              <%= link_to t("website"), event.url, :class => "url", :rel => "nofollow" -%>
             <% end -%>
           </td>
         </tr>
       <% end %>
     <% else %>
       <tr>
-        <td colspan=2>No events were found.</td>
+        <td colspan=2><%= t("no_events_were_found") %></td>
       </tr>
     <% end %>
     <% if skipped > 0 %>
       <tr>
         <td colspan=2>
-          <%= link_to "(And #{skipped} more)", events_url %>
+          <%= link_to t("and_skipped_more", :skipped => skipped), events_url %>
         </td>
       </tr>
     <% end %>

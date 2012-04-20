@@ -37,7 +37,7 @@
   <% end %>
 
   <% unless event.url.blank? %>
-  <h3>Links</h3>
+  <h3><%= t("links") %></h3>
   <ul>
     <li><%= link_to "Website", event.url, :class => "url" %></li>
   </ul>
@@ -45,7 +45,7 @@
 
   <% unless event.tags.blank? %>
   <div class="tags">
-    <h3>Tags</h3>
+    <h3><%= t("tags") %></h3>
     <p><%= tag_links_for event %></p>
   </div>
   <% end %>
@@ -53,7 +53,7 @@
   <div class='single_view_right'>
     <a href='<%= event_url(event) %>.ics'>Download to iCal</a>
     <div id='edit_link'>
-      <p>You can <%= link_to "edit this event", edit_event_url(event) %>.</p>
+      <p><%= t("you_can") %> <%= link_to t("edit_this_event"), edit_event_url(event) %>.</p>
     </div>
     <div id='metadata'>
       <%= datestamp(event) %>

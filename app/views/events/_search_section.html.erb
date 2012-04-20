@@ -4,7 +4,7 @@ Locals:
 * description => String description of events, e.g. "current"
 %>
 <div id='list_description'>
-  <h2>Viewing <strong> <%= pluralize events.size, "#{description} event" %></strong>
+  <h2>Viewing <strong> <%= t("count_events", :count => events.size, :description => description) %></strong>
   matching <strong>&ldquo;<%= @query || @tag %>&rdquo;</strong>
   <%= events_sort_label(params[:order]) %></h2>
 </div>

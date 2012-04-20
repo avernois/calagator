@@ -87,3 +87,91 @@ en:
 
     duplicates:
       title: "Duplicate Venue Squasher"
+
+  #duplicates.html.erb
+  duplicate_events: "Duplicate Events"
+  show_event_with_duplicate: "Show events with a duplicate"
+  title: Title"
+  start_time: "Start Time"
+  both_time: "Both Times"
+  url: "URL"
+  description: "Description"
+  venue: "Venue" #
+  source: "Source"
+  any_field: "Any Field"
+  all_field: "All Fields"
+  all_events: "All Events"
+  duplicate: "Duplicate"
+  event: "Event"
+  master: "Master"
+  checked_items_will_be_deleted: "Checked items will be deleted"
+  squash_duplicates: "Squash Duplicates"
+  no_duplicates_found: "No duplicates found"
+
+  #index.atom.erb
+  at: "at"
+  #index.html.erb
+  filter_by_date: "Filter by date" #
+  iCalendar_file: "iCalendar file" #
+  google_calendar: "Google Calendar" #
+  atom_feed: "Atom feed" #
+  icalendar-feed:  "iCalendar feed" #
+
+  #search.html.erb
+  subscribe_to: "Subscribe to"
+  export_to: "Export to"
+  atom_search_results_for_query: "Atom: Search Results for '%{query}'"
+
+  #show.html.erb
+  export_or_edit_event: "Export or edit this event..."
+  hcalendar_markup: "hCalendar markup"
+  edit: "edit"
+  clone: "clone"
+  delete: "delete"
+  are_you_sure: "Are you sure?"
+  you_can: "You can" #
+  or: "or"
+  this_event: "this event"
+
+  #_table.html.erb
+  sort_by: "Sort By"
+  date: "Date"
+  website: "Website" #
+  no_events_were_found: "No events were found."
+  and_skipped_more: "And %{skipped} more" #
+
+  #_subnav.html.erb
+  overview: "Overview"
+  browse_events: "Browse events"
+  add_an_event: "Add an event"
+  import_events: "Import event(s)"
+
+  #_search.html.erb
+  count_events: 
+    one: "%{count} %{description} event"
+    other: "%{count} %{description} events"
+
+  #_list.html.erb
+  no_events: "No events"
+
+  #item.html.erb
+  public_wifi: "Public WiFi"
+  access_notes: "Access Notes"
+  attendees: "Attendees"
+  count_me_in_on_plancast: "Count me in on Plancast"
+  tags: "Tags"
+
+  #_form.html.erb
+  preview_your_event: "Preview your event"
+  hints:
+    venue_creation: "Type the name of a venue to search. If it doesn't exist, we'll create it for you."
+    event_specific_details: "(Event-specific details like the room number, or who to call to be let into the building.)"
+    format_text_with: "(Format text using %{link} and HTML)"
+    tags: "(Tags are comma-separated keywords that make it easier to find your event and boost its position in searches. You can also use a tag like <code>plancast:plan=ABCD</code> to associate this with a particular <a href='http://plancast.com/'>Plancast</a> event, or a tag like <code>epdx:group=1234</code> to associate the event with a particular <a href='http://epdx.org/'>ePDX</a> group)"
+    evil_robot: "Leave this field blank or we'll think you're a robot."
+  when: "When"
+  preview: "Preview"
+
+  #feed_item.html.erb
+  links: "Links"
+  edit_this_event: "edit this event"

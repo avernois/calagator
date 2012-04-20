@@ -84,7 +84,7 @@
 
 <% if params[:preview] && event.valid? -%>
 <div id="event_preview">
-    <h2>Preview your event</h2>
+    <h2><%= t("preview_your_event") %></h2>
 
     <%= render :partial => "item", :locals => { :event => event, :has_contentbar => false } %>
 </div>
@@ -95,16 +95,16 @@
     <%= f.input :title, :label => "Event Name" %>
     <% focus_on '#event_title' %>
     <li class="string input required stringish" id="event_venue_title_input">
-      <%= f.label :venue_id, "Venue", :class => 'label' %>
+      <%= f.label :venue_id, t("venue"), :class => 'label' %>
       <%= text_field_tag 'venue_name', '', :class=> 'autocomplete', :value => !event.venue.nil? ? event.venue.title : params[:venue_name] %>
       <%= hidden_field(:event, :venue_id, :value => (!event.venue.nil? ? event.venue.id : params[:event_venue_id])) %>
       <%= image_tag "spinner.gif", :id=> "event_venue_loading", :style => "display: none; margin-left: 0.5em;" %>
       <p class='inline-hints'>
-        Type the name of a venue to search. If it doesn't exist, we'll create it for you.
+        <%= t("hints.venue_creation") %>
       </p>
     <li>
     <li id="event_times" class='input'>
-      <%= f.label :when, "When", :class => 'label' %>
+      <%= f.label :when, t("when"), :class => 'label' %>
       <%
         present = Time.now
         if event.new_record?
@@ -120,23 +120,23 @@
         <%= text_field_tag 'end_date', event.end_time ? event.end_time.to_date : Time.now.to_date, :id => 'date_end', :class => 'date_picker' %>
         <%= f.semantic_errors :start_date, :start_time, :end_date, :end_time %>
     </li>
-    <%= f.input :url, :label => 'Website' %>
+    <%= f.input :url, :label => t("website") %>
     <%= f.input :description,
                 :input_html => {:rows => 12},
-                :hint => "(Format text using #{link_to("Markdown", "http://www.simpleeditions.com/59001/markdown-an-introduction", :target => "_blank")} and HTML)".html_safe %>
+                :hint => t("hints.format_text_with", :link => link_to("Markdown", "http://www.simpleeditions.com/59001/markdown-an-introduction", :target => "_blank")).html_safe %>
     <%= f.input :venue_details, :required => false,
                 :input_html => {:rows => 4},
-                :hint => "(Event-specific details like the room number, or who to call to be let into the building.)" %>
+                :hint => t("hints.event_specific_details") %>
     <%= f.input :tag_list, :required => false,
-                :label => 'Tags',
-                :hint => "(Tags are comma-separated keywords that make it easier to find your event and boost its position in searches. You can also use a tag like <code>plancast:plan=ABCD</code> to associate this with a particular <a href='http://plancast.com/'>Plancast</a> event, or a tag like <code>epdx:group=1234</code> to associate the event with a particular <a href='http://epdx.org/'>ePDX</a> group)".html_safe %>
+                :label => t("tags"),
+                :hint => t("hints.tags").html_safe %>
     <li class='trap'>
-      <%= label 'trap', 'field', "Leave this field blank or we'll think you're a robot." %>
+      <%= label 'trap', 'field', t("hints.evil_robot") %>
       <%= text_field_tag 'trap_field', params[:trap_field] %>
     </li>
   <% end %>
   <%= f.buttons do %>
-    <%= f.commit_button :label => "Preview", :button_html => {:name => 'preview'} %>
+    <%= f.commit_button :label => t("preview"), :button_html => {:name => 'preview'} %>
     <%= f.commit_button %>
   <% end %>
 <% end %>

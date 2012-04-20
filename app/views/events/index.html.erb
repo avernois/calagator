@@ -9,7 +9,7 @@
 
 <div id='list_filters' class='sidebar'>
   
-  <h3 class='first'>Filter by date</h3>
+  <h3 class='first'><%= t("filter_by_date") %></h3>
 
   <%= form_tag events_url, :method => 'get' do  -%>
   <div id="date_filter">
@@ -31,15 +31,15 @@
   
   <h3>Subscribe to</h3>
   <ul>
-    <li><%= link_to "iCalendar feed", url_for(:action => "index", :protocol => "webcal", :only_path => false)+".ics" %></li>
-    <li><%= link_to "Atom feed", events_url(:format => "atom") %></li>
-    <li><%= link_to "Google Calendar", "http://www.google.com/calendar/render?cid="+events_url(:format => 'ics') %></li>
+    <li><%= link_to t("icalendar_feed"), url_for(:action => "index", :protocol => "webcal", :only_path => false)+".ics" %></li>
+    <li><%= link_to t("atom_feed"), events_url(:format => "atom") %></li>
+    <li><%= link_to t("google_calendar"), "http://www.google.com/calendar/render?cid="+events_url(:format => 'ics') %></li>
   </ul>
 
   <h3>Export to</h3>
   <ul>
-    <li><%= link_to "iCalendar file", events_url(:format => "ics") %></li>
-    <li><%= link_to "Google Calendar", "http://www.google.com/calendar/render?cid="+events_url(:format => 'ics') %></li>
+    <li><%= link_to t("icalendar_file"), events_url(:format => "ics") %></li>
+    <li><%= link_to t("google_calendar"), "http://www.google.com/calendar/render?cid="+events_url(:format => 'ics') %></li>
   </ul>
   
 </div>

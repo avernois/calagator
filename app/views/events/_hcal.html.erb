@@ -34,7 +34,7 @@
   <% unless @event.url.blank? -%>
   <h3>Links</h3>
   <ul>
-    <li><%= link_to "Website", @event.url, :class => "url" -%></li>
+    <li><%= link_to t("website"), @event.url, :class => "url" -%></li>
   </ul>
   <% end -%>
 </div>

@@ -40,12 +40,12 @@ html_classes << " contentbar" if has_contentbar
             <% end -%>
 
             <% if event.venue.wifi? -%>
-              <div class='wifi_callout'>Public WiFi</div>
+              <div class='wifi_callout'><%= t("public_wiFi") %></div>
             <% end -%>
 
             <% if event.venue.access_notes.present? -%>
               <div class="access_notes">
-                <h3>Access Notes</h3>
+                <h3><%= t("acces_notes") %></h3>
                 <%= format_description event.venue.access_notes %>
               </div>
             <% end -%>
@@ -61,14 +61,14 @@ html_classes << " contentbar" if has_contentbar
   </div>
 
     <% unless event.url.blank? -%>
-      <h3>Website</h3>
+      <h3><%= t("website") %></h3>
       <div class="website">
         <%= link_to "#{truncate(event.url, :length => 128)}", h(event.url), :class => "url", :rel => "nofollow" -%>
       </div>
     <% end -%>
 
     <% unless event.description.blank? -%>
-    <h3>Description</h3>
+    <h3><%= t("description") %></h3>
     <div class="description">
       <%= format_description(event.description) %>
     </div>
@@ -76,8 +76,8 @@ html_classes << " contentbar" if has_contentbar
 
     <div class="attendees">
       <script id="attendees-template" type="text/mustache">
-        <h3>Attendees</h3>
-        <span class='plancast-rsvp'>(<a href="{{plan_url}}">Count me in on Plancast</a>)</span>
+        <h3><%= t("attendees") %></h3>
+        <span class='plancast-rsvp'>(<a href="{{plan_url}}"><%= t("count_me_in_on_plancast") %></a>)</span>
         <br />
         <ul>
           {{#attendees}}
@@ -91,7 +91,7 @@ html_classes << " contentbar" if has_contentbar
     </div>
 
     <% unless event.tags.blank? -%>
-    <h3>Tags</h3>
+    <h3><%= t("tags") %></h3>
     <div class="tags">
         <%= tag_links_for event %>
     </div>
