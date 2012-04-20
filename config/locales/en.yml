@@ -108,21 +108,21 @@ en:
   squash_duplicates: "Squash Duplicates"
   no_duplicates_found: "No duplicates found"
 
-  #index.atom.erb
+  #events/index.atom.erb
   at: "at"
-  #index.html.erb
+  #events/index.html.erb
   filter_by_date: "Filter by date" #
   iCalendar_file: "iCalendar file" #
   google_calendar: "Google Calendar" #
   atom_feed: "Atom feed" #
   icalendar-feed:  "iCalendar feed" #
 
-  #search.html.erb
+  #events/search.html.erb
   subscribe_to: "Subscribe to"
   export_to: "Export to"
   atom_search_results_for_query: "Atom: Search Results for '%{query}'"
 
-  #show.html.erb
+  #events/show.html.erb
   export_or_edit_event: "Export or edit this event..."
   hcalendar_markup: "hCalendar markup"
   edit: "edit"
@@ -133,35 +133,35 @@ en:
   or: "or"
   this_event: "this event"
 
-  #_table.html.erb
+  #events/_table.html.erb
   sort_by: "Sort By"
   date: "Date"
   website: "Website" #
   no_events_were_found: "No events were found."
   and_skipped_more: "And %{skipped} more" #
 
-  #_subnav.html.erb
+  #events/_subnav.html.erb
   overview: "Overview"
   browse_events: "Browse events"
   add_an_event: "Add an event"
   import_events: "Import event(s)"
 
-  #_search.html.erb
+  #events/_search.html.erb
   count_events: 
     one: "%{count} %{description} event"
     other: "%{count} %{description} events"
 
-  #_list.html.erb
+  #events/_list.html.erb
   no_events: "No events"
 
-  #item.html.erb
+  #events/item.html.erb
   public_wifi: "Public WiFi"
   access_notes: "Access Notes"
   attendees: "Attendees"
   count_me_in_on_plancast: "Count me in on Plancast"
   tags: "Tags"
 
-  #_form.html.erb
+  #events/_form.html.erb
   preview_your_event: "Preview your event"
   hints:
     venue_creation: "Type the name of a venue to search. If it doesn't exist, we'll create it for you."
@@ -172,6 +172,19 @@ en:
   when: "When"
   preview: "Preview"
 
-  #feed_item.html.erb
+  #events/feed_item.html.erb
   links: "Links"
   edit_this_event: "edit this event"
+
+  #site/index.html.erb
+  popular_tags: "Popular tags"
+  whats_happening: "What's happening?"
+  today: "Today"
+  tomorrow: "Tomorrow"
+  next_two_weeks: "Next two weeks"
+  view_future_events: "View future events &raquo;"
+
+  #site/export.html.erb
+  export_formats: "Export formats"
+
+  
