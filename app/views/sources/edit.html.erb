@@ -1,14 +1,14 @@
-<h1>Editing source</h1>
+<h1><%= t("editing_source") %></h1>
 
 <%= semantic_form_for(@source) do |f| %>
   <%= f.inputs do %>
     <%= f.input :url %>
-    <%= f.input :reimport, :label => "Re-import?" %>
+    <%= f.input :reimport, :label => t("re_import") %>
   <% end %>
   <%= f.buttons do %>
-    <%= f.submit "Update" %>
+    <%= f.submit t("update") %>
   <% end %>
 <% end %>
 
-<%= link_to 'Show', @source %> |
-<%= link_to 'Back', sources_path %>
+<%= link_to t("show"), @source %> |
+<%= link_to t("back"), sources_path %>

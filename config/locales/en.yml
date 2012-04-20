@@ -187,4 +187,23 @@ en:
   #site/export.html.erb
   export_formats: "Export formats"
 
-  
+  #sources/edit.html.erb
+  editing_source: "Editing source"
+  update: "Update"
+  show: "Show"
+  back: "Back"
+  re_import: "Re-import?" #
+
+  #sources/index.html.erb
+  listing_sources: "Listing sources"
+  manage: "Manage"
+  destroy: "Destroy"
+
+  #sources/new.html.erb
+  import_a_source: "Import a source"
+  hints:
+    import_events_from_feed: "Import one or more events from a feed or web page in one of the following formats:"
+    check_source_regularly : "(Regularly check this source and import new events automatically?)"
+    bookmark_import_html: "<b>Bookmarklet</b>: Import pages faster by adding the following bookmark to your browser's bookmarks and click it when you're visiting a webpage that contains events that you'd like to import:"
+  import: "Import"
+  add_to: "Add to %{name}"

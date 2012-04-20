@@ -3,14 +3,14 @@
 <% end %>
 
 <p>
-  <b>URL:</b>
+  <b><%= t("url") %></b>
   <%= source_url_link @source %>
 </p>
 
 <p>
-   <b>Events:</b>
+   <b><%= t("events") %>:</b>
    <%= render :partial => 'events/list', :locals => { :events =>  @source.events } %>
 </p>
 
-<%= link_to 'Back', sources_path %> |
-<%= link_to 'Destroy', @source, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to t("back"), sources_path %> |
+<%= link_to t("destroy"), @source, :confirm => t("are_you_sure"), :method => :delete %>
