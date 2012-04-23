@@ -98,13 +98,13 @@ en:
   description: "Description"
   venue: "Venue" #
   source: "Source"
-  any_field: "Any Field"
-  all_field: "All Fields"
+  any_field: "Any Field" #
+  all_field: "All Fields" #
   all_events: "All Events"
   duplicate: "Duplicate"
   event: "Event"
   master: "Master"
-  checked_items_will_be_deleted: "Checked items will be deleted"
+  checked_items_will_be_deleted: "Checked items will be deleted" #
   squash_duplicates: "Squash Duplicates"
   no_duplicates_found: "No duplicates found"
 
@@ -168,7 +168,7 @@ en:
     event_specific_details: "(Event-specific details like the room number, or who to call to be let into the building.)"
     format_text_with: "(Format text using %{link} and HTML)"
     tags: "(Tags are comma-separated keywords that make it easier to find your event and boost its position in searches. You can also use a tag like <code>plancast:plan=ABCD</code> to associate this with a particular <a href='http://plancast.com/'>Plancast</a> event, or a tag like <code>epdx:group=1234</code> to associate the event with a particular <a href='http://epdx.org/'>ePDX</a> group)"
-    evil_robot: "Leave this field blank or we'll think you're a robot."
+    evil_robot: "Leave this field blank or we'll think you're a robot." #
   when: "When"
   preview: "Preview"
 
@@ -207,3 +207,70 @@ en:
     bookmark_import_html: "<b>Bookmarklet</b>: Import pages faster by adding the following bookmark to your browser's bookmarks and click it when you're visiting a webpage that contains events that you'd like to import:"
   import: "Import"
   add_to: "Add to %{name}"
+
+  #venues/_form.html.erb
+  hints:
+    venue_details: "You can %{action} the details of your venue below.  The more information we have about your venue, the easier it will be for people to find it."
+    full_address_one_line: "(one-line version of full address)"
+    access_details: "(Details about how to access the space, and any accessibility restrictions that visitors may want to know about.)"
+    geocode_with_location: "([%{latitude}, %{longitude}] currently; if checked, we'll try again.)"
+    geocode_without_location: "(if checked, we'll try to determine a map position for this venue.)"
+  has_public_wireless: "This venue has public wireless internet access"
+  enter: "enter"
+  edit: "edit"
+  venue_name: "Venue Name"
+  full_address: "Full Address"
+  city: "City"
+  state: "State"
+  zip_code: "Zip Code"
+  web_link: "Web Link"
+  venue_closes: "This venue is no longer open for business" #
+  re_geocode: "Re-geocode?"
+  geocode: "Geocode?"
+
+  #venues/_subnav.html.erb
+  browse_venues: "Browse venues"
+  add_venue: "Add a venue"
+
+  #venuse/duplicates.html.erb
+  duplicate_venues: "Duplicate Venues"
+  show_venue_with_duplicate: "Show venues with a duplicate"
+  title: "Title"
+  address: "Address"
+  street_address: "Street Address"
+  postal_code: "Postal Code"
+  geo_coords: "Geo. Coords"
+  email: "Email"
+  telephone: "Telephone"
+  all_venues: "All Venues"
+  flash: 
+    select_one_master_and_duplicates: "Select only one set of master and duplicate venues. If you select an unrelated venue, it will be merged into the same single master record."
+  nb_of_events: "# of Events"
+  replace_deleted_venues_by_selected_venue: "Events associated with deleted venues will be replaced with the venues selected using radio buttons."
+
+ #venues/index.html/erb
+  find_a_venue: "Find a venue:"
+  keywords: "Keywords"
+  showing_venues_with_tag: "Showing <strong>%{count}</strong> venues tagged with <strong>%{tag}"
+  sorry_no_venues: "Sorry, there are no venues"
+  showing_venues:
+    one: "Showing %{all}<strong>%{count}</strong> venue"
+    other: "Showing %{all}<strong>%{count}</strong> venues"
+  with_public_wifi: "with public WiFi"
+  most_active: "Most Active"
+  newest: "Newest"
+  time_ago: "Added %{ago} ago"
+  list_all_venues: "List all venues"
+  view_big_map: "View a big map"
+  export_venues: "Export venues"
+  kml: "KML"
+  json: "JSON"
+  
+  #venues/map.html.erb
+  big_map_of_venues: "Big Map of Venues"
+
+  #venues/show.html.erb
+  export_or_edit_venues: "Export or edit this venue"
+  this_venue: "this venue"
+  future_events_happening_here: "Future events happening here"
+  past_events_that_happened_here: "Past events that happened here"
